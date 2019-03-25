@@ -13,7 +13,7 @@ function displayGIFs() {
         method: "GET"
     }).then(function (response) {
         
-        for (let idx = 0; idx < response.length; idx++) {
+        for (let idx = 0; idx < response.data.length; idx++) {
             
             // Creating a div to hold the gifs
             var gifDiv = $("<div class='gifs'>");
