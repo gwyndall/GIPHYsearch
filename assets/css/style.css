@@ -1,0 +1,43 @@
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+body {
+    background-image: url('../images/wallpaper.jpg');
+    background-size: 100%;
+    
+}
+#interface {
+    width: 80%;
+    margin: 20px auto;
+}
+#title {
+    font-weight: 800;
+    color: yellow;
+    font-size: 4rem;
+    text-shadow: 4px 4px black;
+    display: inline;
+}
+#subTitle {
+    color: black;
+    font-weight: 600;
+    font-size: 3rem;
+    text-shadow: 2px 2px yellow;
+    display: inline;
+}
+#topic-input {
+    font-size: 1rem;
+    width: 200px;  
+}
+button, #add-topic {
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.rated {
+    text-transform: uppercase;
+}

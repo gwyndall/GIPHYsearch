@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Brooklyn Nine Nine Gifs!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="interface">
+        <div id="title">BROOKLYN NINE NINE </div>
+        <div id="subTitle"> gif search</div>
+        <div id="buttons"></div><br>
+        <form id="search-form">
+                <input type="text" id="topic-input">
+                <!-- Button triggers new topic to be added -->
+                <input id="add-topic" type="submit" value="Add more topics">
+              </form>
+            </div>
+        
+              <div id="gifsDiv"></div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/javascript/script.js"></script>
+    <script>
+        displayGIFs();
+    </script>
+</body>
+</html>
