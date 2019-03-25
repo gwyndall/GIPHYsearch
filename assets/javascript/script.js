@@ -5,7 +5,7 @@ function displayGIFs() {
 
     var topic = $(this).attr("data-topic");
 
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=brooklyn99&" + topic + "&api_key=ivVTH3dDkQoM7NuttLDp6pFg83wYQss8&limit=5";
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=brooklyn+nine+nine+" + topic + "&api_key=ivVTH3dDkQoM7NuttLDp6pFg83wYQss8&limit=10";
 
     // Creating an AJAX call for the specific button clicked
     $.ajax({
@@ -20,18 +20,25 @@ function displayGIFs() {
             
             // Retrieving the URL for the image
             var imgURL = response.data[idx].images.downsized.url;
+
+            // Retrieving link to image on giphy
+            var giphyURL = response.data[idx].url;
             
             // Creating an element to hold the image
             var image = $("<img>").attr("src", imgURL);
+
+            // Creating an anchor tag to the image on giphy
+            var giphyAnchor = $('<a>').attr('href', giphyURL)
             
             // Appending the image
-            gifDiv.append(image);
+            giphyAnchor.append(image);
+            gifDiv.append(giphyAnchor);
             
             // Storing the rating data
             var rating = response.data[idx].rating;
             
             // Creating an element to have the rating displayed
-            var pRating = $("<p class='rated'>").text("Rating: " + rating);
+            var pRating = $("<p class='rated'>").text("Rated: " + rating);
             
             // Displaying the rating
             gifDiv.append(pRating);
@@ -39,7 +46,6 @@ function displayGIFs() {
             // Adding new gifs to the top of the display
             $("#gifsDiv").prepend(gifDiv);
             
-            console.log(idx);
         }
         console.log(response);
     });
