@@ -1,5 +1,4 @@
 // Initial array of topics
-var topics = ["B99", "Jake Peralta", "Amy Santiago", "Captain Holt", "Stephanie Beatriz", "Cheddar"];
 
 function displayGIFs() {
 
@@ -26,13 +25,9 @@ function displayGIFs() {
             
             // Creating an element to hold the image
             var image = $("<img>").attr("src", imgURL);
-
-            // Creating an anchor tag to the image on giphy
-            var giphyAnchor = $('<a>').attr('href', giphyURL)
-            
+           
             // Appending the image
-            giphyAnchor.append(image);
-            gifDiv.append(giphyAnchor);
+            gifDiv.append(image);
             
             // Storing the rating data
             var rating = response.data[idx].rating;
@@ -51,6 +46,9 @@ function displayGIFs() {
     });
 
 }
+
+
+
 
 // Function for creating buttons
 function renderButtons() {
@@ -86,6 +84,23 @@ $("#add-topic").on("click", function (event) {
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
 });
+
+// Function for "playing" images
+$(document).on("click", ".gifs", playGif);
+function playGif() {
+    var gifState = $(this).data("state");
+ //   var imageURL = respData.images.downsized.url;
+
+    if ($(this).data("state", "still")) {
+ //       imgURL = $(this).attr("src", imageURL+".url");
+        $(this).data('state', 'playing');
+        console.log('playing');
+    } else {
+ //       imgURL = respData.images.downsized_still.url;
+        $(this).data('state','still');
+        console.log('still');
+    }
+};
 
 // Adding a click event listener to all elements with a class of "topics-btn"
 $(document).on("click", ".topic-btn", displayGIFs);
