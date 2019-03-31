@@ -1,5 +1,5 @@
 // Initial array of topics
-var topics = ["B99", "Jake Peralta", "Amy Santiago", "Captain Holt", "Stephanie Beatriz", "Cheddar"];
+var topics = ["B99", "Jake Peralta", "Amy Santiago", "Captain Holt", "Stephanie Beatriz", "Cool", "Dog"];
 
 function displayGIFs() {
 
@@ -12,45 +12,62 @@ function displayGIFs() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        
-        for (let idx = 0; idx < response.data.length; idx++) {
-            
-            // Creating a div to hold the gifs
-            var gifDiv = $("<div class='gifs'>");
-            
-            // Retrieving the URL for the image
-            var imgURL = response.data[idx].images.downsized.url;
+            console.log(response);
+            for (let idx = 0; idx < response.data.length; idx++) {
+                var results = response.data[idx]
 
-            // Retrieving link to image on giphy
-            var giphyURL = response.data[idx].url;
-            
-            // Creating an element to hold the image
-            var image = $("<img>").attr("src", imgURL);
+                // Creating a div to hold the gifs
+                var gifDiv = $("<div class='gifs'>");
 
-            // Creating an anchor tag to the image on giphy
-            var giphyAnchor = $('<a>').attr('href', giphyURL)
-            
-            // Appending the image
-            giphyAnchor.append(image);
-            gifDiv.append(giphyAnchor);
-            
-            // Storing the rating data
-            var rating = response.data[idx].rating;
-            
-            // Creating an element to have the rating displayed
-            var pRating = $("<p class='rated'>").text("Rated: " + rating);
-            
-            // Displaying the rating
-            gifDiv.append(pRating);
-            
-            // Adding new gifs to the top of the display
-            $("#gifsDiv").prepend(gifDiv);
-            
+                // Retrieving the URL for the image
+                var imgURL = results.images.downsized.url;
+
+                // Retrieving link to image on giphy
+                var giphyURL = results.url;
+
+                // Creating an element to hold the image
+                var image = $("<img>").attr("src", imgURL).attr("data-state", "still").attr("class", "gifImg")
+
+                // Creating an anchor tag to the image on giphy
+                 var giphyAnchor = $('<a>').attr('href', giphyURL).attr('class', 'gifImg').attr("target", "_blank")
+
+                // Appending the image
+                 giphyAnchor.append(image);
+                 gifDiv.append(giphyAnchor);
+
+                // Storing the rating data
+                var rating = results.rating;
+
+                // Creating an element to have the rating displayed
+                var pRating = $("<p class='rated'>").text("Rated: " + rating);
+
+                // Displaying the rating
+                gifDiv.append(pRating);
+
+                // Adding new gifs to the top of the display
+                $("#gifsDiv").prepend(gifDiv);
+
+            }
+            // Event listener to toggle image from still to active
+            // I never could quite get this to work!!
+            // $(".gifImg").on("click", function (event) {
+            //     event.preventDefault();
+            //     let state = $(this).data("state");
+            //     if (state === "still") {
+            //         $(this).attr("data-state", "active");
+            //         console.log(state);
+            //     } else {
+            //         $(this).attr("data-state", "still");
+            //         console.log(state);
+            //     }
+            // });
         }
-        console.log(response);
-    });
+
+    );
 
 }
+
+
 
 // Function for creating buttons
 function renderButtons() {
@@ -89,6 +106,9 @@ $("#add-topic").on("click", function (event) {
 
 // Adding a click event listener to all elements with a class of "topics-btn"
 $(document).on("click", ".topic-btn", displayGIFs);
+
+
+
 
 // Calling the renderButtons function to display the intial buttons
 renderButtons();
