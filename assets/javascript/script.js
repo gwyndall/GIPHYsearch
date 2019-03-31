@@ -5,7 +5,7 @@ function displayGIFs() {
 
     var topic = $(this).attr("data-topic");
 
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=brooklyn+nine+nine+" + topic + "&api_key=ivVTH3dDkQoM7NuttLDp6pFg83wYQss8&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=brooklyn+nine+nine+" + topic + "&api_key=ivVTH3dDkQoM7NuttLDp6pFg83wYQss8&limit=10";
 
     // Creating an AJAX call for the specific button clicked
     $.ajax({
